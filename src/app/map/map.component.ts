@@ -30,9 +30,9 @@ export class MapComponent implements OnInit {
 
         // default map location
         const location = new Location();
-        location.address = "New York City, New York, United States";
-        location.latlng = L.latLng(40.731253, -73.996139);
-
+        location.address = "500 C Street SW, WASHINGTON DC 20005";
+        location.latlng = L.latLng(38.88558, -77.01867);
+        // location.latlng = this.geocoder.geocodeBing(location.address);
         return Observable.of(location);
       })
       .subscribe((location: Location) => {
@@ -50,7 +50,7 @@ export class MapComponent implements OnInit {
         L.control.scale().addTo(map);
         this.address = location.address;
         this.mapService.map = map;
-        this.mapService.toggleMarkerEditing(true);
+        // this.mapService.toggleMarkerEditing(true);
       });
   }
 }
