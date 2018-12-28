@@ -74,7 +74,7 @@ export class GeocodingService {
   getClientLocation() {
     return this.http
       // .get("http://ipv4.myexternalip.com/json")
-      .get("http://api.ipapi.com/api/check?access_key=59b964d2beb2b2b966069dddd74736b2")
+      .get("https://ip-api.com/json/")
       // .flatMap((result: any) =>
       //   this.http.get(`https://ipapi.co/${result.ip}/json`)
       // )
