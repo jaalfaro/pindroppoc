@@ -45,7 +45,7 @@ export class GeocodingService {
     const BingMapsAPIKey = "AlLemtI1TtD7P0MIGzkAOwr69Xc4k3xAcCk0yfbubjse1oPWXTeQFGCotkicRuwW";
     return this.http
       .get(
-        `http://dev.virtualearth.net/REST/v1/Locations?q=${encoded}&key=${BingMapsAPIKey}`
+        `https://dev.virtualearth.net/REST/v1/Locations?q=${encoded}&key=${BingMapsAPIKey}`
       )
       .map((result: any) => {
         if (result.length === 0) {
