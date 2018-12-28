@@ -24,7 +24,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "github": "ng build --prod --output-path docs --base-href pinroppoc"
   },
   "lint-staged": {
     "*.{d.ts,ts,json,md}": [
