@@ -58,8 +58,13 @@ export class MapService {
         maxZoom: 25,
         minNativeZoom: 1,
         maxNativeZoom: 21
+      }),
+      "Google": L.tileLayer("http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+        maxZoom: 20,
+        subdomains: ["mt0", "mt1", "mt2", "mt3"]
       })
-    };
+  }
+    ;
   }
 
   disableMouseEvent(elementId: string) {
@@ -115,13 +120,13 @@ export class MapService {
 
     const marker = L.marker(e.latlng, {
       draggable: true,
-      icon,
+      icon
     })
       .bindPopup(popup, {
         offset: L.point(0, -35),
         closeButton: false,
         autoClose: false,
-        closeOnClick: false,
+        closeOnClick: false
       })
       .addTo(this.map)
       .openPopup();
