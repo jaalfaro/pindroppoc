@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { LatLng } from "leaflet";
-import { Location } from "./location";
+import { Injectable } from "@angular/core";
+import * as esri from "esri-leaflet";
 import * as L from "leaflet";
+import { LatLng } from "leaflet";
 import * as Bing from "leaflet-bing-layer";
 
 @Injectable()
@@ -26,32 +26,24 @@ export class MapService {
       "&copy; <a href='http://cartodb.com/attributions'>CartoDB</a>";
 
     this.baseMaps = {
-      // OpenStreetMap: L.tileLayer(
-      //   "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      //   {
-      //     zIndex: 1,
-      //     attribution: osmAttr
-      //   }
-      // ),
-      Esri: L.tileLayer(
-        "http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+      OpenStreetMap: L.tileLayer(
+        "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {
           zIndex: 1,
-          attribution: esriAttr,
-          maxZoom: 25,
-          maxNativeZoom: 19
+          attribution: osmAttr
         }
       ),
-      // CartoDB: L.tileLayer(
-      //   "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
-      //   {
-      //     zIndex: 1,
-      //     attribution: cartoAttr
-      //   }
-      // ),
+      CartoDB: L.tileLayer(
+        "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
+        {
+          zIndex: 1,
+          attribution: cartoAttr
+        }
+      ),
       // "BingArial": new Bing("AlLemtI1TtD7P0MIGzkAOwr69Xc4k3xAcCk0yfbubjse1oPWXTeQFGCotkicRuwW"),
-      "BingRoads": new Bing({
-        bingMapsKey: "AlLemtI1TtD7P0MIGzkAOwr69Xc4k3xAcCk0yfbubjse1oPWXTeQFGCotkicRuwW",
+      BingRoads: new Bing({
+        bingMapsKey:
+          "AlLemtI1TtD7P0MIGzkAOwr69Xc4k3xAcCk0yfbubjse1oPWXTeQFGCotkicRuwW",
         imagerySet: "AerialWithLabelsOnDemand",
         culture: "en-US",
         minZoom: 10,
@@ -59,12 +51,16 @@ export class MapService {
         minNativeZoom: 1,
         maxNativeZoom: 21
       }),
-      "Google": L.tileLayer("http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+      Google: L.tileLayer("http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
         maxZoom: 20,
         subdomains: ["mt0", "mt1", "mt2", "mt3"]
       })
-  }
-    ;
+    };
+
+    Object.getOwnPropertyNames(esri.BasemapLayer.TILES).forEach(tile => {
+      this.baseMaps["Esri" + tile] = esri.basemapLayer(tile);
+    });
+    // this.baseMaps = esri.BasemapLayer.TILES;
   }
 
   disableMouseEvent(elementId: string) {

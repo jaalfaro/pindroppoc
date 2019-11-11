@@ -40,9 +40,9 @@ export class MapComponent implements OnInit {
           zoomControl: false,
           center: location.latlng,
           zoom: 19,
-          minZoom: 4,
-          maxZoom: 21,
-          layers: [this.mapService.baseMaps.Google]
+          // minZoom: 4,
+          // maxZoom: 21,
+          layers: [this.mapService.baseMaps.BingRoads]
         });
 
         L.control.zoom({ position: "topright" }).addTo(map);
