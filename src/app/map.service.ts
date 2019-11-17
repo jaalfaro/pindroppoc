@@ -26,6 +26,12 @@ export class MapService {
       "&copy; <a href='http://cartodb.com/attributions'>CartoDB</a>";
 
     this.baseMaps = {
+      NationalMap: L.tileLayer(
+        "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}?blankTile=false",
+        {
+          maxZoom: 16
+        }
+      ),
       OpenStreetMap: L.tileLayer(
         "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {

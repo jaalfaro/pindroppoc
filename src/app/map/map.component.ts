@@ -42,7 +42,10 @@ export class MapComponent implements OnInit {
           zoom: 19,
           // minZoom: 4,
           // maxZoom: 21,
-          layers: [this.mapService.baseMaps.BingRoads]
+          layers: [
+            this.mapService.baseMaps.EsriImageryFirefly,
+            this.mapService.baseMaps.EsriImageryTransportation
+          ]
         });
 
         L.control.zoom({ position: "topright" }).addTo(map);
